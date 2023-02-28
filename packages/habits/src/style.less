@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+}
+
+@size: var(--habit-size, 18px);
+@border-radius: var(--habit-item-border-radius, 4px);
+@color-check: var(--habit-color-check, var(--habit-theme-color-1));
+@color-uncheck: var(--habit-color-uncheck, #f1f1ef);
+
+
+
+.habits {
+  margin: auto;
+  font-family: "Courier New", Courier, monospace;
+
+  &.is-heatmap {
+    min-width: 1000px;
+
+
+  }
+
+  &.is-bar {
+    .habits-header__months {
+      >div {
+        position: relative;
+
+        &::after {
+          position: absolute;
+          bottom: 12px;
+          right: -10px;
+          font-size: 10px;
+          transform: scale(0.8);
+          content: '月';
+        }
+      }
+    }
+
+    .habits-main__months {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+
+      >div {
+        width: 20px;
+        background-color: var(--habit-color, var(--habit-theme-color-1));
+        align-self: flex-end;
+        transform: skewX(-10deg);
+
+        &::after {
+          bottom: calc(0px - @size);
+          position: absolute;
+          content: attr(data-value);
+        }
+      }
+    }
+  }
+
+  &-header {
+    &__months {
+      display: flex;
+      justify-content: space-evenly;
+      height: 40px;
+      font-size: 30px;
+      color: lightgrey;
+      padding-left: @size;
+      font-weight: bold;
+
+      >div {
+        width: 36px;
+        text-align: center;
+
+      }
+    }
+
+    &__weeks {
+      width: calc(@size * 2);
+      font-size: 12px;
+      font-weight: bold;
+      text-align: right;
+
+      >div {
+        height: @size;
+        line-height: @size;
+
+        &+div {
+          margin-top: @size;
+        }
+      }
+    }
+  }
+
+  &-main {
+    display: flex;
+  }
+
+  &-footer {
+    padding: 40px 40px;
+  }
+
+  &-days {
+    flex: 1 0 auto;
+    display: flex;
+    height: calc(7 * @size);
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    &::before {
+      content: "";
+      display: block;
+      width: @size;
+    }
+
+    each(range(6), {
+      &[data-start-of-week="@{value}"] {
+        &::before {
+          height: calc(@size * @value);
+        }
+      }
+    });
+}
+}
+
+.day {
+  width: @size;
+  height: @size;
+  flex: 0 0 @size;
+  border: 2px solid white;
+  background-color: @color-uncheck;
+  transition: 0.2s ease;
+  border-radius: @border-radius;
+
+  &:hover {
+    border-color: @color-check;
+  }
+
+  &.is-check {
+    background-color: @color-check;
+  }
+
+  // colors
+  each(range(0, 3), {
+    &.level-@{value} {
+      background-color: ~"var(--habit-color-@{value}, var(--habit-theme-color-@{value}))";
+    }
+  })
+}

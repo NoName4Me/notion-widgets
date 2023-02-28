@@ -1,0 +1,12 @@
+{
+  "name": "@notion-widgets/placeholder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"placeholder\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
