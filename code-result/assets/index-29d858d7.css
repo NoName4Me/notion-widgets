@@ -1,0 +1,1 @@
+*{box-sizing:border-box}#app{all:initial}#helper{display:none}#helper .code-input{width:100%;height:calc(100vh - 200px)}#helper .result-url{white-space:pre-wrap;word-break:break-all}
