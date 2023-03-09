@@ -4,7 +4,8 @@
 | --------- | -------------------------------------------------- | ------ |
 | `db-id`   | database ID                                        | 无     |
 | `project` | 项目字段名，如`阅读`，如`健身`                     | 无     |
-| `type`    | 打卡类型，`number`（记录数字） 或 `check`（有/无） | `check`     |
+| `type`    | 图表类型: `heatmap` 天热力图，`bar` 月度柱状图 | `heatmap`     |
+| `data-type`    | 打卡类型，`number`（记录数字） 或 `check`（有/无） | `check`     |
 |`shape`|元素形状，`circle` 表示圆，`{n}px` 表示圆角大小
 
 ## check 类型
